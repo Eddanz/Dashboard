@@ -364,7 +364,7 @@ window.onload = function() {
 const API_KEY = 'c862aec2d4f337c1bea38e36a2623cdc';
 
 // Base URL for the OpenWeatherMap API
-const BASE_URL = 'http://api.openweathermap.org/data/2.5/forecast';
+const BASE_URL = 'https://api.openweathermap.org/data/2.5/forecast';
 
 // Function to fetch translations for weather descriptions
 async function fetchTranslations() {
@@ -409,7 +409,7 @@ async function generateWeatherHTML(weather_forecast, translations) {
             // Fetch translation for weather description
             const translatedDescription = translations[info.description[i]] || info.description[i];
             html += `<li>
-                        <img src="http://openweathermap.org/img/wn/${info.icon[i]}.png" alt="Weather Icon">
+                        <img src="https://openweathermap.org/img/wn/${info.icon[i]}.png" alt="Weather Icon">
                         <h3>${heading}</h3>
                         <p><strong>H:</strong> ${Math.max(...info.temperature).toFixed(1)} °C <strong>L:</strong> ${Math.min(...info.temperature).toFixed(1)} °C</p>
                         <p><strong>${translatedDescription}</strong></p>
