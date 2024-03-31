@@ -348,19 +348,13 @@ function loadNotesFromLocalStorage() {
     }
 }
 
-// Load stored links and notes when the page loads
-window.onload = function() {
-    loadLinksFromLocalStorage();
-    loadNotesFromLocalStorage();
-};
-
 
 
 
 
 /* =============== Script for Weather API =============== */
 
-// Your OpenWeatherMap API key
+// OpenWeatherMap API key
 const API_KEY = 'c862aec2d4f337c1bea38e36a2623cdc';
 
 // Base URL for the OpenWeatherMap API
@@ -512,45 +506,58 @@ setInterval(() => {
 
 /* =============== Script for News API =============== */
 
-const apiKey = '1654f39cdb8b49fa8c4923d14f0326ad'; // Replace 'YOUR_API_KEY' with your actual News API key
+function fetchNews() {
+    const apiKey = '1654f39cdb8b49fa8c4923d14f0326ad';
 
-const baseUrl = 'https://newsapi.org/v2/';
-const endpoint = 'top-headlines';
-const country = 'se';
-const category = 'technology';
+    const baseUrl = 'https://newsapi.org/v2/';
+    const endpoint = 'top-headlines';
+    const country = 'se';
+    const category = 'technology';
 
-const url = `${baseUrl}${endpoint}?country=${country}&category=${category}&apiKey=${apiKey}`;
+    const url = `${baseUrl}${endpoint}?country=${country}&category=${category}&apiKey=${apiKey}`;
 
-fetch(url)
-    .then(response => {
-        if (!response.ok) {
-        throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(data => {
-        const articles = data.articles || [];
-        const newsList = document.getElementById('news'); // Get the ul element by its id
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const articles = data.articles || [];
+            const newsList = document.getElementById('news'); // Get the ul element by its id
 
-        articles.forEach(article => {
-        const li = document.createElement('li');
+            articles.forEach(article => {
+                const li = document.createElement('li');
 
-        // Create link to article
-        const link = document.createElement('a');
-        link.href = article.url;
-        link.textContent = article.title;
-        link.target = '_blank'; // Open link in new tab
-        li.appendChild(link);
+                // Create link to article
+                const link = document.createElement('a');
+                link.href = article.url;
+                link.textContent = article.title;
+                link.target = '_blank'; // Open link in new tab
+                li.appendChild(link);
 
-        // Create source element
-        const source = document.createElement('p');
-        source.textContent = `Source: ${article.source.name}`;
-        li.appendChild(source);
+                // Create source element
+                const source = document.createElement('p');
+                source.textContent = `Source: ${article.source.name}`;
+                li.appendChild(source);
 
-        // Append the list item to the existing ul with id "news"
-        newsList.appendChild(li);
+                // Append the list item to the existing ul with id "news"
+                newsList.appendChild(li);
+            });
+        })
+        .catch(error => {
+            console.error('There was a problem fetching news:', error);
         });
-    })
-    .catch(error => {
-        console.error('There was a problem fetching news:', error);
-    });
+}
+
+
+
+
+
+// Load stored links, notes and news when the page loads
+window.onload = function() {
+    loadLinksFromLocalStorage();
+    loadNotesFromLocalStorage();
+    fetchNews();
+};
