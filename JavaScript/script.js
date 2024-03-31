@@ -511,43 +511,37 @@ const endpoint = 'top-headlines';
 const country = 'se';
 const category = 'technology';
 
-function fetchNews() {
+async function fetchNews() {
+    try {
+        const url = `${baseUrl}${endpoint}?country=${country}&category=${category}&apiKey=${apiKey}`;
+        const response = await fetch(url);
 
-    const url = `${baseUrl}${endpoint}?country=${country}&category=${category}&apiKey=${apiKey}`;
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
 
-    fetch(url)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            const articles = data.articles || [];
-            const newsList = document.getElementById('news'); // Get the ul element by its id
+        const data = await response.json();
+        const articles = data.articles || [];
+        const newsList = document.getElementById('news');
 
-            articles.forEach(article => {
-                const li = document.createElement('li');
+        articles.forEach(article => {
+            const li = document.createElement('li');
+            const link = document.createElement('a');
 
-                // Create link to article
-                const link = document.createElement('a');
-                link.href = article.url;
-                link.textContent = article.title;
-                link.target = '_blank'; // Open link in new tab
-                li.appendChild(link);
+            link.href = article.url;
+            link.textContent = article.title;
+            link.target = '_blank';
+            li.appendChild(link);
 
-                // Create source element
-                const source = document.createElement('p');
-                source.textContent = `Source: ${article.source.name}`;
-                li.appendChild(source);
+            const source = document.createElement('p');
+            source.textContent = `Source: ${article.source.name}`;
+            li.appendChild(source);
 
-                // Append the list item to the existing ul with id "news"
-                newsList.appendChild(li);
-            });
-        })
-        .catch(error => {
-            console.error('There was a problem fetching news:', error);
+            newsList.appendChild(li);
         });
+    } catch (error) {
+        console.error('There was a problem fetching news:', error);
+    }
 }
 
 
