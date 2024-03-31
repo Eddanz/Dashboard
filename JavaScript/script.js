@@ -505,14 +505,13 @@ setInterval(() => {
 
 
 /* =============== Script for News API =============== */
+const apiKey = '1654f39cdb8b49fa8c4923d14f0326ad';
+const baseUrl = 'https://newsapi.org/v2/';
+const endpoint = 'top-headlines';
+const country = 'se';
+const category = 'technology';
 
 function fetchNews() {
-    const apiKey = '1654f39cdb8b49fa8c4923d14f0326ad';
-
-    const baseUrl = 'https://newsapi.org/v2/';
-    const endpoint = 'top-headlines';
-    const country = 'se';
-    const category = 'technology';
 
     const url = `${baseUrl}${endpoint}?country=${country}&category=${category}&apiKey=${apiKey}`;
 
