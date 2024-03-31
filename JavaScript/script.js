@@ -514,7 +514,12 @@ setInterval(() => {
 
 const apiKey = '1654f39cdb8b49fa8c4923d14f0326ad'; // Replace 'YOUR_API_KEY' with your actual News API key
 
-const url = `https://newsapi.org/v2/top-headlines?country=se&category=technology&apiKey=${apiKey}`;
+const baseUrl = 'https://newsapi.org/v2/';
+const endpoint = 'top-headlines';
+const country = 'se';
+const category = 'technology';
+
+const url = `${baseUrl}${endpoint}?country=${country}&category=${category}&apiKey=${apiKey}`;
 
 fetch(url)
     .then(response => {
