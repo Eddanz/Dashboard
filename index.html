@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/style.css">
+    <script src="https://kit.fontawesome.com/a5c32464a7.js" crossorigin="anonymous"></script>
+    <title>Dashboard</title>
+</head>
+<body>
+    <main>
+        <section id="dashboard">
+            <h2 id="time-date">Laddar...</h2>
+            <h1 id="user-h1"></h1>
+            <ul id="widgets">
+                <li class="widget" id="links">
+                    <h2>Snabblänkar</h2>
+                    <div id="linkContainer">
+                        <ul id="quick-links"></ul> <!-- New ul for quick links -->
+                    </div>
+                    <button id="add-link" class="add-btn" onclick="toggleInput(this)">
+                        <i id="add-link-icon" class="fa-solid fa-circle-plus"></i>
+                        <span id="add-link-text">Lägg till länk</span>
+                    </button>
+                    <input type="text" id="display-name-input" placeholder="Skriv in visningsnamn">
+                    <input type="text" id="link-input" placeholder="Skriv in URL">
+                    <button id="submit-button" onclick="addLink()"><i class="fa-solid fa-circle-plus"></i></button>
+                </li>
+                <li class="widget" id="weather">
+                    <h2>Väder</h2>
+                    <div id="weatherContainer">
+                        <ul id="weatherForecast"></ul> <!-- New ul for weather forecast -->
+                    </div>
+                </li>
+                <li class="widget" id="unkown">
+                    <h2>Nyheter</h2>
+                    <div id="newsContainer">
+                        <ul id="news"></ul> <!-- New ul for news -->
+                    </div>
+                    
+                </li>
+                <li class="widget" id="notes">
+                    <h2>Anteckningar</h2>
+                    <div id="noteContainer">
+                        <ul id="note-list"></ul> <!-- New ul for notes -->
+                    </div>
+                    <button id="add-note-btn" class="add-btn" onclick="toggleNoteInput(this)">
+                        <i id="add-note-icon" class="fa-solid fa-circle-plus"></i>
+                        <span id="add-note-text">Lägg till anteckning</span>
+                    </button>
+                    <input type="text" id="note-input" placeholder="Skriv din anteckning här...">
+                    <button id="note-submit-button" onclick="addNote()"><i class="fa-solid fa-circle-plus"></i></button>
+                </li>
+            </ul>
+            <button id="background-btn"><i class="fa-solid fa-arrow-rotate-right"></i>Slumpa ny bakgrund</button>
+        </section>
+    </main>
+    <script src="JavaScript/script.js"></script>
+</body>
+</html>

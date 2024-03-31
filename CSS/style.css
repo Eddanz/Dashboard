@@ -1,0 +1,305 @@
+*{
+    margin: 0; padding: 0;
+}
+
+html{
+    font-family: Arial, Helvetica, sans-serif;
+    color: #333
+}
+
+#dashboard{
+    text-align: center;
+    height: 100vh;
+    width: 100vw;
+    overflow-y: auto;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#time-date{
+    background-color: #cccccccc;
+    width: 20vw;
+    height: auto;
+    padding: 1rem;
+    margin-top: 2rem;
+    border-radius: 20px;
+    margin-left: auto; margin-right: auto;
+}
+
+#user-h1{
+    margin-top: 10%; margin-bottom: 3%;
+    font-size: 4em;
+    color: #fff;
+    width: auto;
+    display: inline-block;
+    margin-left: auto; margin-right: auto;
+    transition: ease 1s;
+    text-shadow: 10px 10px 10px rgba(0, 0, 0, 1);
+}
+
+#user-h1:hover{
+    cursor: pointer;
+    letter-spacing: 1px;
+    color: #ffffff86;
+}
+
+#editable-title{
+    margin-top: 10%;
+    margin-bottom: 3%;
+    font-size: 4em;
+    width: 80%;
+    text-align: center;
+    color: #fff;
+    background-color: #ffffff00;
+    border-radius: 20px;
+}
+
+#widgets{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    width: 80%;
+    height: auto;
+    margin: auto;
+    margin-bottom: 4rem;
+}
+
+.widget{
+    justify-content: space-between;
+    background-color: #cccccccc;
+    height: 40vh;
+    border-radius: 20px;
+    width: calc(25% - 10px);
+    margin-bottom: 20px;
+}
+
+.widget h2{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.add-btn{
+    position: absolute;
+    bottom: 20px;
+    left: 50%; 
+    transform: translateX(-50%);
+    background-color: #bdbdbdcc;
+    border: 0;
+    padding: 1rem;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: ease 1s;
+    color: #333;
+}
+
+.add-btn:hover{
+    letter-spacing: 1px;
+    background-color: #ffffff80;
+    color:#fff;
+}
+
+.widget#links, .widget#notes{
+    position: relative;
+}
+
+#quick-links li, #note-list li, #weatherForecast li, #news li{
+    background-color: #ffffff91;
+    margin-top: 10px;
+    border-radius: 20px;
+    width: 70%;
+    word-wrap: break-word;
+    margin-left: auto; margin-right: auto;
+    list-style: none;
+    padding: 1rem;
+    text-align: left;
+    font-size: 1.3rem;
+}
+
+#news li a{
+    color: #333;
+    font-weight: bold;
+    text-decoration: none;
+    transition: ease 1s;
+}
+
+#news li a:hover{
+    color: #33333393;
+}
+
+#news li p{
+    font-size: smaller;
+}
+
+#newsContainer, #weatherContainer{
+    height: 30vh; 
+    overflow-y: auto;
+}
+
+#linkContainer, #noteContainer{
+    height: 22vh; 
+    overflow-y: auto;
+}
+
+#weatherForecast li img{
+    float: right;
+    background-color: #3333333d;
+    border-radius: 50%;
+}
+
+#quick-links li a{
+    text-decoration: none;
+    color: #333;
+}
+
+#background-btn{
+    position: absolute;
+    bottom: 20px;
+    left: 50%; 
+    transform: translateX(-50%);
+    background-color: #cccccccc;
+    border: 0;
+    padding: 1rem;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: ease 1s;
+    color: #333;
+}
+
+#background-btn:hover{
+    letter-spacing: 1px;
+    background-color: #ffffff80;
+    color:#fff;
+}
+
+#background-btn i, .add-btn i{
+    margin-right: 1rem;
+}
+
+#display-name-input,
+#link-input{
+    margin-top: 20px;
+    display: none;
+    border-radius: 20px;
+    border-style: none;
+    padding: 1rem;
+}
+
+#note-input{
+    margin-top: 20px;
+    display: none;
+    border-radius: 20px;
+    border-style: none;
+    padding: 1rem;
+    position: absolute;
+    left: 50%; 
+    transform: translateX(-50%);
+}
+
+#submit-button{
+    cursor: pointer;
+    display: none;
+    border-style: none;
+    background: none;
+    font-size: 1.5rem;
+    color: #333;
+    transition: ease 1s;
+    transform: translate(3px ,10%);
+}
+
+#note-submit-button{
+    cursor: pointer;
+    display: none;
+    border-style: none;
+    background: none;
+    font-size: 1.5rem;
+    color: #333;
+    transition: ease 1s;
+    transform: translate(120px, 100%);
+}
+
+#submit-button:hover,
+#note-submit-button:hover{
+    color: #313131a6;
+}
+
+/* Style the delete button */
+.delete-button {
+    float: right;
+    cursor: pointer;
+    transition: ease 1s;
+}
+
+.delete-button:hover{
+    color: #313131a6;
+}
+
+.favicon {
+    width: 16px;
+    height: 16px;
+    margin-right: 1rem;
+}
+
+/* Hide the note input field by default */
+#note-input {
+    display: none;
+}
+
+
+
+
+
+@media screen and (max-width: 1024px) {
+    .widget {
+        width: calc(50% - 10px); /* Two widgets per row for iPad */
+        height: 45vh;
+    }
+
+    #newsContainer, #weatherContainer{
+        height: 35vh; 
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .widget {
+        width: 100%; /* Stack widgets vertically on smaller screens like mobile */
+        height: 60vh;
+    }
+
+    #time-date{
+        width: 30vw;
+    }
+
+    #newsContainer, #weatherContainer{
+        height: 45vh; 
+    }
+
+    #linkContainer, #noteContainer{
+        height: 35vh; 
+        overflow-y: auto;
+    }
+}
+
+@media screen and (max-height: 844px) {
+    .widget {
+        width: 100%; /* Stack widgets vertically on smaller screens like mobile */
+        height: 80vh;
+    }
+
+    #newsContainer, #weatherContainer{
+        height: 60vh; 
+    }
+
+    #linkContainer, #noteContainer{
+        height: 32vh; 
+        overflow-y: auto;
+    }
+}
