@@ -505,43 +505,44 @@ setInterval(() => {
 
 
 /* =============== Script for News API =============== */
-const apiKey = '1654f39cdb8b49fa8c4923d14f0326ad';
-const baseUrl = 'https://newsapi.org/v2/';
-const endpoint = 'top-headlines';
-const country = 'se';
-const category = 'technology';
+const apiKey = '520d9229a1e999f2649abed2d316cd8a';
 
-async function fetchNews() {
+// Function to fetch news articles based on search query
+async function fetchNews(query) {
+    const url = `https://gnews.io/api/v4/search?q=${query}&lang=sv&token=${apiKey}`;
+
     try {
-        const url = `${baseUrl}${endpoint}?country=${country}&category=${category}&apiKey=${apiKey}`;
         const response = await fetch(url);
-
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-
         const data = await response.json();
-        const articles = data.articles || [];
-        const newsList = document.getElementById('news');
-
-        articles.forEach(article => {
-            const li = document.createElement('li');
-            const link = document.createElement('a');
-
-            link.href = article.url;
-            link.textContent = article.title;
-            link.target = '_blank';
-            li.appendChild(link);
-
-            const source = document.createElement('p');
-            source.textContent = `Source: ${article.source.name}`;
-            li.appendChild(source);
-
-            newsList.appendChild(li);
-        });
+        return data.articles;
     } catch (error) {
-        console.error('There was a problem fetching news:', error);
+        console.error('Error fetching news:', error);
+        return [];
     }
+}
+
+// Function to render news articles
+async function renderNews() {
+    const newsContainer = document.getElementById('news');
+    const searchQuery = 'teknik'; // Change this to your desired search query
+
+    const articles = await fetchNews(searchQuery);
+    articles.forEach(article => {
+        const listItem = document.createElement('li');
+
+        const anchor = document.createElement('a');
+        anchor.textContent = article.title;
+        anchor.href = article.url;
+        anchor.target = '_blank';
+
+        const source = document.createElement('p');
+        source.textContent = `Källa: ${article.source.name}`;
+
+        listItem.appendChild(anchor);
+        listItem.appendChild(source);
+
+        newsContainer.appendChild(listItem);
+    });
 }
 
 
@@ -552,5 +553,5 @@ async function fetchNews() {
 window.onload = function() {
     loadLinksFromLocalStorage();
     loadNotesFromLocalStorage();
-    fetchNews();
+    renderNews();
 };
